@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace:绑定一个Dao/Mapper接口-->
+<!--通过配置文件内部写sql语句从而实现接口类中的方法！！！！-->
+<mapper namespace="com.yss.market.utils.mybatis_order.UserMapper">
+   <!--order部分-->
+<!--保存订单-->
+<insert id="saveOrder" parameterType="Order">
+   INSERT INTO market.order1(orderId, createTime, price, status, userId) VALUES (#{orderId},#{createTime},#{price},#{status},#{userId});
+</insert>
+
+   <select id="queryOrder" resultType="Order">
+      SELECT * FROM market.order1 WHERE userId=#{userId};
+   </select>
+
+
+   <!--orderItem部分-->
+   <insert id="saveOrderItem" parameterType="OrderItem">
+      INSERT INTO market.order1item1(`name`, `count`, `price`, totalPrice, orderId) VALUES (#{name},#{count},#{price},#{totalPrice},#{orderId});
+   </insert>
+
+   <select id="queryOrderItem" resultType="OrderItem">
+      SELECT * FROM market.order1item1 WHERE orderId=#{orderId};
+   </select>
+
+</mapper>
+
+

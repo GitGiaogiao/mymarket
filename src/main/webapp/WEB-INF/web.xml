@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>user1Servlet</servlet-name>
+        <servlet-class>com.yss.market.web.user1Servlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>user1Servlet</servlet-name>
+        <url-pattern>/user1Servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>commodity1Servlet</servlet-name>
+        <servlet-class>com.yss.market.web.commodity1Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>commodity1Servlet</servlet-name>
+        <url-pattern>/commodity1Servlet</url-pattern>
+    </servlet-mapping>
+
+    <!--访问谷歌验证码生成servlet就会自动生成验证码图片-->
+    <servlet>
+        <servlet-name>KaptchaServlet</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>KaptchaServlet</servlet-name>
+        <url-pattern>/kaptcha.jpg</url-pattern>
+    </servlet-mapping>
+
+    <!--购物车部分-->
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>com.yss.market.web.CartServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cartServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--订单部分-->
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>com.yss.market.web.OrderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/orderServlet</url-pattern>
+    </servlet-mapping>
+</web-app>
+        

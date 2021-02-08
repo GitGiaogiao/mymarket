@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace:绑定一个Dao/Mapper接口-->
+<!--通过配置文件内部写sql语句从而实现接口类中的方法！！！！-->
+<mapper namespace="com.yss.market.utils.mybatis_commodity1.UserMapper">
+    <!--commodity部分-->
+    <insert id="addCommodity" parameterType="Commodity">
+        INSERT INTO market.commodity(id,name, price, sales, stock, img_path) VALUES (#{id},#{name},#{price},#{sales},#{stock},#{img_path});
+    </insert>
+
+    <delete id="delCommodityById" parameterType="Integer">
+        DELETE FROM market.commodity WHERE id=#{id};
+    </delete>
+
+    <update id="updateCommodity" parameterType="Commodity">
+        UPDATE market.commodity
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name!=null&amp;&amp;name!=&quot;&quot;">
+                `name`=#{name},
+            </if>
+            <if test="price!=null&amp;&amp;price&gt;0">
+               price=#{price},
+            </if>
+            <if test="sales!=null&amp;&amp;sales&gt;0">
+                sales=#{sales},
+            </if>
+            <if test="stock!=null&amp;&amp;stock&gt;0">
+                stock=#{stock},
+            </if>
+            <if test="img_path!=null&amp;&amp;img_path!=&quot;&quot;">
+                img_path=#{img_path}
+            </if>
+        </trim>
+        <if test="id!=null">
+            WHERE id=#{id}
+        </if>
+    </update>
+
+    <select id="QueryCommodity" parameterType="Integer" resultType="Commodity">
+        SELECT * FROM market.commodity WHERE id=#{id};
+    </select>
+
+    <select id="QueryCommodities" resultType="Commodity">
+        SELECT * FROM market.commodity;
+    </select>
+
+    <select id="queryForPageTotalCount" resultType="Integer">
+        SELECT COUNT(*) FROM market.commodity;
+    </select>
+</mapper>
+

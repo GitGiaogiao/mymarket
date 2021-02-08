@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace:绑定一个Dao/Mapper接口-->
+<!--通过配置文件内部写sql语句从而实现接口类中的方法！！！！-->
+<mapper namespace="com.yss.market.utils.mybatis_user1.UserMapper">
+    <!--          使用二级缓存
+         1、eviction缓存回收策略
+         2、readOnly只读，关闭之后需要在Pojo类中实现反序列化接口 Serializable
+         3、flushInterval刷新间隔，单位ms
+    -->
+
+    <!--user1部分-->
+    <insert id="IdInsertUserList" parameterType="User">
+        INSERT INTO market.user1(username, password, email,phone) VALUES (#{username},#{password},#{email},#{phone})
+    </insert>
+
+    <select id="QueryInf" parameterType="User" resultType="User">
+        SELECT * FROM market.user1
+        <where>
+            <if test="username!=null&amp;&amp;username!=&quot;&quot;">
+                username=#{username}
+            </if>
+            <if test="password!=null&amp;&amp;password!=&quot;&quot;">
+                AND password=#{password}
+            </if>
+            <if test="email!=null&amp;&amp;email!=&quot;&quot;">
+                AND email=#{email}
+            </if>
+            <if test="phone!=null&amp;&amp;phone!=&quot;&quot;">
+                AND phone=#{phone}
+            </if>
+        </where>
+    </select>
+
+    <select id="LoginUser" parameterType="User" resultType="User">
+        SELECT * FROM market.user1 WHERE password=#{password}
+            <if test="username!=null&amp;&amp;username!=&quot;&quot;">
+                AND username=#{username}
+            </if>
+            <if test="phone!=null&amp;&amp;phone!=&quot;&quot;">
+                AND phone=#{phone}
+            </if>
+    </select>
+
+</mapper>
